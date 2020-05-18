@@ -1,0 +1,2 @@
+rootProject.name='wrsw'
+include ':app'
