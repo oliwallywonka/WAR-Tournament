@@ -1,4 +1,4 @@
-package com.example.wrsw;
+package com.example.wrsw.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import retrofit2.Call;
@@ -8,8 +8,12 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.TextView;
+
+import com.example.wrsw.api.JsonApi;
+import com.example.wrsw.R;
+import com.example.wrsw.api.RetrofitClient;
+import com.example.wrsw.models.Team;
 
 import java.util.List;
 
@@ -22,23 +26,17 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
-
         mJsonTxtView = findViewById(R.id.jsonText);
         //getTournamentFromApi();
         getTeamFromApi();
     }
 
     private void getTeamFromApi(){
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
 
-        JsonApi jsonPlaceHolderApi = retrofit.create(JsonApi.class);
 
-        Call<List<Team>> call = jsonPlaceHolderApi.getTeam();
+        Call<List<Team>> call = RetrofitClient.getInstance()
+                .getApi()
+                .getTeam();
 
         call.enqueue(new Callback<List<Team>>() {
             @Override

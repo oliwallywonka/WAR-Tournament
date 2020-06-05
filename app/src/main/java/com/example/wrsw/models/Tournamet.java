@@ -1,4 +1,4 @@
-package com.example.wrsw;
+package com.example.wrsw.models;
 
 public class Tournamet {
     private String _id;
