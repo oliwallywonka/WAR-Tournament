@@ -44,6 +44,7 @@ public class CreateUserActivity extends AppCompatActivity implements View.OnClic
         String password = edtPassword.getText().toString().trim();
         String name = edtName.getText().toString().trim();
 
+
         if(email.isEmpty()){
             edtEmail.setError("El Email es requerido");
             edtEmail.requestFocus();
@@ -70,7 +71,8 @@ public class CreateUserActivity extends AppCompatActivity implements View.OnClic
             return;
         }
 
-        Call<ResponseBody> call = RetrofitClient.getInstance()
+        Call<ResponseBody> call = RetrofitClient
+                .getInstance()
                 .getApi()
                 .createUser(email,password,name);
 
@@ -78,8 +80,19 @@ public class CreateUserActivity extends AppCompatActivity implements View.OnClic
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 try {
-                    String res = response.body().string();
-                    Toast.makeText(CreateUserActivity.this,res,Toast.LENGTH_LONG).show();
+                    if(response.code()<205){
+                        String res = response.body().string();
+                        Toast.makeText(CreateUserActivity.this,res,Toast.LENGTH_LONG).show();
+                    }
+
+                    if(response.code()>399 || response.code()<500){
+                        Toast.makeText(CreateUserActivity.this,"El usuario ya existe o peticion negada",Toast.LENGTH_LONG).show();
+                    }
+
+                    if(response.code()>499){
+                        Toast.makeText(CreateUserActivity.this,"Error en el servidor",Toast.LENGTH_LONG).show();
+                    }
+
                 }catch (IOException e){
                     e.printStackTrace();
                 }
