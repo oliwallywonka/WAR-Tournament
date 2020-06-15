@@ -80,16 +80,16 @@ public class CreateUserActivity extends AppCompatActivity implements View.OnClic
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 try {
-                    if(response.code()<205){
+                    if(response.code()<=299){
                         String res = response.body().string();
                         Toast.makeText(CreateUserActivity.this,res,Toast.LENGTH_LONG).show();
                     }
 
-                    if(response.code()>399 || response.code()<500){
+                    if(response.code()>=399 ){
                         Toast.makeText(CreateUserActivity.this,"El usuario ya existe o peticion negada",Toast.LENGTH_LONG).show();
                     }
 
-                    if(response.code()>499){
+                    if(response.code()>=499){
                         Toast.makeText(CreateUserActivity.this,"Error en el servidor",Toast.LENGTH_LONG).show();
                     }
 
@@ -113,7 +113,8 @@ public class CreateUserActivity extends AppCompatActivity implements View.OnClic
                 userSignUp();
                 break;
             case R.id.btnLogin:
-                startActivity(new Intent(this, MainActivity.class));
+                startActivity(new Intent(this, LoginActivity.class));
+                finish();
                 break;
         }
     }

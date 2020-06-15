@@ -2,15 +2,17 @@ package com.example.wrsw.models;
 
 public class User {
 
-    //final String id;
-    final String email;
-    final String password;
-    final String name;
+    String id;
+    String email;
+    String password;
+    String name;
+    public String token;
 
-    public User(String email,String password, String name){
-        this.email = email;
-        this.password = password;
-        this.name = name;
+    public String getToken() {
+        return token;
+    }
 
+    public void setToken(String token) {
+        this.token = token;
     }
 }

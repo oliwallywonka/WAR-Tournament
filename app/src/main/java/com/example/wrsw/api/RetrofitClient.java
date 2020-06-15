@@ -6,6 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitClient {
 
     private static final String BASE_URL = "https://aqueous-dusk-09996.herokuapp.com/api/";
+    //private static final String BASE_URL = "http://localhost:4000/api/";
     private static RetrofitClient mInstance;
     private Retrofit retrofit;
 
