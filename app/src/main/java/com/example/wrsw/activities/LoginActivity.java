@@ -76,6 +76,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         startActivity(new Intent(LoginActivity.this, MainActivity.class)
                                 .putExtra("token",user.token)
                         );
+                        finish();
                     }
 
                     if(response.code()>=300){

@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mJsonTxtView = findViewById(R.id.jsonText);
-        findViewById(R.id.teams).setOnClickListener(this);
+        findViewById(R.id.logout).setOnClickListener(this);
         findViewById(R.id.tournament).setOnClickListener(this);
         findViewById(R.id.btnAddTournament).setOnClickListener(this);
         token = getIntent().getStringExtra("token");
@@ -113,7 +113,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.teams:
+            case R.id.logout:
+                startActivity(new Intent(this, LoginActivity.class).putExtra("token",token));
+                finish();
                 break;
             case R.id.tournament:
                 startActivity(new Intent(this, MainActivity.class).putExtra("token",token));

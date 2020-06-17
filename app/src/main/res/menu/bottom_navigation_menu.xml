@@ -6,8 +6,8 @@
         android:icon="@drawable/icon_lock"
         android:title="Organizar"/>
     <item
-        android:id="@+id/teams"
+        android:id="@+id/logout"
         android:enabled="true"
         android:icon="@drawable/icon_lock"
-        android:title="En Curso"/>
+        android:title="Logout"/>
 </menu>
