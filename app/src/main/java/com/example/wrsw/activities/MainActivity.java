@@ -16,6 +16,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,6 +29,7 @@ import com.example.wrsw.models.Team;
 import com.example.wrsw.models.Tournamet;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.Calendar;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
@@ -83,10 +85,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
     }
 
-    private void createTournament(final String token,String name){
+    private void createTournament(final String token,String name,String date){
         Call<Tournamet> call = RetrofitClient.getInstance()
                 .getApi()
-                .createTournament(token,name);
+                .createTournament(token,name,date);
         call.enqueue(new Callback<Tournamet>() {
             @Override
             public void onResponse(Call<Tournamet> call, Response<Tournamet> response) {
@@ -105,35 +107,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onFailure(Call<Tournamet> call, Throwable t) {
                 Toast.makeText(MainActivity.this,t.toString()+"123",Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
-    private void getTeamFromApi(String token){
-        Call<List<Team>> call = RetrofitClient.getInstance()
-                .getApi()
-                .getTeam(token,"5edc060a5bfa622e5c7e2f59");
-        call.enqueue(new Callback<List<Team>>() {
-            @Override
-            public void onResponse(Call<List<Team>> call, Response<List<Team>> response) {
-                if(!response.isSuccessful()){
-                    mJsonTxtView.setText("Codigo: "+response.code());
-                    return;
-                }
-                List<Team> teamList = response.body();
-                for(Team team: teamList){
-                    String content = "";
-                    content += "userId:"+ team.getId() + "\n";
-                    content += "name:"+ team.getName() + "\n";
-                    content += "logp:"+ team.getLogo() + "\n";
-                    content += "status:"+ team.getStatus() + "\n\n";
-                    mJsonTxtView.append(content);
-                }
-            }
-            @Override
-            public void onFailure(Call<List<Team>> call, Throwable t) {
-                mJsonTxtView.setText(t.getMessage());
-
             }
         });
     }
@@ -163,13 +136,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         builder.setView(view);
         final AlertDialog dialog = builder.create();
         dialog.show();
-
+        final Tournamet tournamet = new Tournamet();
         name = view.findViewById(R.id.tournamentDialogName);
         cancel = view.findViewById(R.id.btnTournamentCancel);
         save = view.findViewById(R.id.btnTournamentSave);
 
-        //final String nameDialog = name.getText().toString().trim();
-        //name.setText("aaaaaaaaaaaaaaaa");
+        final DatePicker date = view.findViewById(R.id.datepickerTournament);
+        Calendar calendar= Calendar.getInstance();
+        date.init(calendar.get(calendar.YEAR), calendar.get(calendar.MONTH), calendar.get(calendar.DAY_OF_MONTH), new DatePicker.OnDateChangedListener() {
+            @Override
+            public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                String yearMonthDay = "";
+                if(date.getMonth()<10){
+                    yearMonthDay = date.getYear()+"-0"+date.getMonth()+"-"+date.getDayOfMonth();
+                }
+                if(date.getDayOfMonth()<10){
+                    yearMonthDay = date.getYear()+"-"+date.getMonth()+"-0"+date.getDayOfMonth();
+                }
+
+                tournamet.setCreated(yearMonthDay);
+            }
+        });
+
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -180,7 +168,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                createTournament(token,name.getText().toString().trim());
+                createTournament(token,name.getText().toString().trim(),tournamet.getDate());
                 dialog.dismiss();
             }
         });

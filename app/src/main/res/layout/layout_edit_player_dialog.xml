@@ -13,21 +13,25 @@
             android:padding="16dp">
 
             <EditText
-                android:id="@+id/tournamentDialogName"
+                android:id="@+id/playerDialogNick"
                 style="@style/Widget.MaterialComponents.TextInputEditText.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:hint="Nombre"
+                android:hint="Nick"
                 android:inputType="textEmailAddress"
                 android:textSize="20dp" />
-
-            <DatePicker
-                android:id="@+id/datepickerTournament"
+            <EditText
+                android:id="@+id/playerDialogAge"
+                style="@style/Widget.MaterialComponents.TextInputEditText.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:ems="10"
+                android:hint="Edad"
+                android:inputType="textPhonetic"
+                android:textSize="20dp" />
 
         </LinearLayout>
 
@@ -39,7 +43,7 @@
             android:layout_gravity="center"
             android:orientation="horizontal">
             <Button
-                android:id="@+id/btnTournamentCancel"
+                android:id="@+id/btnPlayerCancel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
@@ -48,7 +52,7 @@
                 style="?attr/borderlessButtonStyle"
                 />
             <Button
-                android:id="@+id/btnTournamentSave"
+                android:id="@+id/btnPlayerSave"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Guardar"
@@ -59,6 +63,5 @@
         </LinearLayout>
 
     </LinearLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

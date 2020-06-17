@@ -4,10 +4,10 @@
         android:id="@+id/tournament"
         android:enabled="true"
         android:icon="@drawable/icon_lock"
-        android:title="menu1"/>
+        android:title="Organizar"/>
     <item
         android:id="@+id/teams"
         android:enabled="true"
         android:icon="@drawable/icon_lock"
-        android:title="menu2"/>
+        android:title="En Curso"/>
 </menu>

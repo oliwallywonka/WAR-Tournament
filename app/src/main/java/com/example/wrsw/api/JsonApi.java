@@ -1,9 +1,11 @@
 package com.example.wrsw.api;
 
+import com.example.wrsw.models.Player;
 import com.example.wrsw.models.Team;
 import com.example.wrsw.models.Tournamet;
 import com.example.wrsw.models.User;
 
+import java.util.Date;
 import java.util.List;
 
 import okhttp3.ResponseBody;
@@ -31,7 +33,8 @@ public interface JsonApi {
     @POST("tournaments")
     Call<Tournamet> createTournament(
             @Header("x-auth-token") String token,
-            @Field("name") String name
+            @Field("name") String name,
+            @Field("date") String date
     );
 
     @FormUrlEncoded
@@ -39,7 +42,8 @@ public interface JsonApi {
     Call<Tournamet> editTournament(
             @Header("x-auth-token") String token,
             @Path("id") String idTournament,
-            @Field("name") String name
+            @Field("name") String name,
+            @Field("date") String date
     );
 
     @PUT("tournaments/desactivate/{id}")
@@ -52,7 +56,7 @@ public interface JsonApi {
     @GET("teams/{id}")
     Call<List<Team>> getTeam(
             @Header("x-auth-token") String token,
-            @Path("id") String idTeam
+            @Path("id") String idTournament
     );
 
     @FormUrlEncoded
@@ -60,7 +64,7 @@ public interface JsonApi {
     Call<Team> createTeam(
             @Header("x-auth-token") String token,
             @Field("name") String name,
-            @Field("tournament") String tournament
+            @Field("tournament") String tournamentId
     );
 
     @FormUrlEncoded
@@ -71,15 +75,42 @@ public interface JsonApi {
             @Field("name") String name
     );
 
-    @PUT("temas/desactivate/{id}")
-    Call<Team> descativateTeam(
+    @PUT("teams/desactivate/{id}")
+    Call<Team> desactivateTeam(
             @Header("x-auth-token") String token,
             @Path("id") String idTeam
     );
 
     //JUGADORES
+    @GET("players/{id}")
+    Call<List<Player>> getPlayers(
+            @Header("x-auth-token") String token,
+            @Path("id") String idTeam
+    );
 
+    @FormUrlEncoded
+    @POST("players/team")
+    Call<Player> createPlayer(
+            @Header("x-auth-token") String token,
+            @Field("team") String idTeam,
+            @Field("nick") String nick,
+            @Field("age") String age
+    );
 
+    @FormUrlEncoded
+    @PUT("players/{id}")
+    Call<Player> editPlayer(
+            @Header("x-auth-token") String token,
+            @Path("id") String idPlayer,
+            @Field("nick") String nick,
+            @Field("age") String age
+    );
+
+    @PUT("players/desactivate/{id}")
+    Call<Player> desactivatePlayer(
+            @Header("x-auth-token") String token,
+            @Path("id") String id
+    );
 
     //LOGIN USUARIO
     @FormUrlEncoded
@@ -88,7 +119,6 @@ public interface JsonApi {
             @Field("email") String email,
             @Field("password") String password
     );
-
 
     //CREAR NUEVO USUARIO
     @FormUrlEncoded

@@ -13,7 +13,7 @@
             android:padding="16dp">
 
             <EditText
-                android:id="@+id/tournamentDialogName"
+                android:id="@+id/teamDialogName"
                 style="@style/Widget.MaterialComponents.TextInputEditText.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -22,12 +22,6 @@
                 android:hint="Nombre"
                 android:inputType="textEmailAddress"
                 android:textSize="20dp" />
-
-            <DatePicker
-                android:id="@+id/datepickerTournament"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
 
         </LinearLayout>
 
@@ -39,7 +33,7 @@
             android:layout_gravity="center"
             android:orientation="horizontal">
             <Button
-                android:id="@+id/btnTournamentCancel"
+                android:id="@+id/btnTeamCancel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
@@ -48,7 +42,7 @@
                 style="?attr/borderlessButtonStyle"
                 />
             <Button
-                android:id="@+id/btnTournamentSave"
+                android:id="@+id/btnTeamSave"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Guardar"
@@ -59,6 +53,4 @@
         </LinearLayout>
 
     </LinearLayout>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
