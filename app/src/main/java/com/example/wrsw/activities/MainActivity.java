@@ -48,7 +48,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.tournament).setOnClickListener(this);
         findViewById(R.id.btnAddTournament).setOnClickListener(this);
         token = getIntent().getStringExtra("token");
-        //getTeamFromApi(token);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerTournament);
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
@@ -172,7 +171,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 dialog.dismiss();
             }
         });
-
-
     }
 }

@@ -148,6 +148,14 @@
                         android:textColor="@color/colorPrimaryDark"
                         style="?attr/borderlessButtonStyle"
                         />
+                    <Button
+                        android:id="@+id/btnVersus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Versus"
+                        android:textColor="@color/colorPrimaryDark"
+                        style="?attr/borderlessButtonStyle"
+                        />
 
 
                 </LinearLayout>

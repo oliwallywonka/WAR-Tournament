@@ -27,6 +27,7 @@ import android.widget.Toast;
 
 import com.example.wrsw.R;
 import com.example.wrsw.activities.MainActivity;
+import com.example.wrsw.activities.VersusActivity;
 import com.example.wrsw.api.RetrofitClient;
 import com.example.wrsw.models.Team;
 import com.example.wrsw.models.Tournamet;
@@ -62,8 +63,9 @@ public class ReciclerViewAdaptador extends RecyclerView.Adapter<ReciclerViewAdap
         TextView status = holder.status1;
         Button delete = holder.delete;
         Button edit = holder.edit;
-        final Button team = holder.team;
+        Button versus = holder.versus;
         Button addTeam = holder.addTeam;
+        final Button team = holder.team;
         final RecyclerView recyclerViewTeam = holder.recyclerViewTeam;
         final ConstraintLayout dropdownTeam = holder.dropdownTeam;
         final RecyclerView.LayoutManager layoutManager;
@@ -136,6 +138,16 @@ public class ReciclerViewAdaptador extends RecyclerView.Adapter<ReciclerViewAdap
                 }
             }
         });
+
+        versus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                context.startActivity(new Intent(context, VersusActivity.class)
+                        .putExtra("token",token)
+                        .putExtra("idTournament",tournamets.get(position).get_id())
+                );
+            }
+        });
     }
 
     @Override
@@ -147,7 +159,7 @@ public class ReciclerViewAdaptador extends RecyclerView.Adapter<ReciclerViewAdap
         CardView tournamentCard;
         ConstraintLayout dropdownTeam;
         TextView name1,date1,status1;
-        Button delete,edit,team,addTeam;
+        Button delete,edit,team,addTeam,versus;
         RecyclerView recyclerViewTeam;
 
 
@@ -161,6 +173,7 @@ public class ReciclerViewAdaptador extends RecyclerView.Adapter<ReciclerViewAdap
             edit = itemView.findViewById(R.id.btnEdit);
             team = itemView.findViewById(R.id.btnTeams);
             addTeam = itemView.findViewById(R.id.btnAddTeam);
+            versus = itemView.findViewById(R.id.btnVersus);
             dropdownTeam = itemView.findViewById(R.id.dropdownTeam);
             recyclerViewTeam = itemView.findViewById(R.id.teamsReciclerView);
         }
