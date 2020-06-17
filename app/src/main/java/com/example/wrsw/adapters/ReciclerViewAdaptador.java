@@ -238,11 +238,15 @@ public class ReciclerViewAdaptador extends RecyclerView.Adapter<ReciclerViewAdap
             @Override
             public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                 String yearMonthDay = "";
+
                 if(date.getMonth()<10){
                     yearMonthDay = date.getYear()+"-0"+date.getMonth()+"-"+date.getDayOfMonth();
                 }
                 if(date.getDayOfMonth()<10){
                     yearMonthDay = date.getYear()+"-"+date.getMonth()+"-0"+date.getDayOfMonth();
+                }
+                if(date.getMonth()<10 && date.getDayOfMonth()<10){
+                    yearMonthDay = date.getYear()+"-0"+date.getMonth()+"-0"+date.getDayOfMonth();
                 }
 
                 tournamet.setCreated(yearMonthDay);
