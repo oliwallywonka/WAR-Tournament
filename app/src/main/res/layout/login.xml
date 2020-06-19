@@ -10,7 +10,12 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-    >
+    ></ScrollView>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -25,9 +30,10 @@
 
                 <ImageView
                     android:id="@+id/imageView"
-                    android:layout_width="151dp"
-                    android:layout_height="113dp"
-                    android:layout_marginBottom="40dp" />
+                    android:layout_width="175dp"
+                    android:layout_height="145dp"
+                    android:layout_marginBottom="40dp"
+                    android:background="@drawable/iconw" />
 
                 <EditText
                     android:id="@+id/edtUsuario"
@@ -38,7 +44,7 @@
                     android:backgroundTint="@android:color/darker_gray"
                     android:drawableLeft="@drawable/icon_email"
                     android:ems="10"
-                    android:hint="Usuario"
+                    android:hint="  Usuario"
                     android:inputType="textPersonName"
                     android:paddingLeft="5dp" />
 
@@ -52,7 +58,7 @@
                     android:backgroundTint="@android:color/darker_gray"
                     android:drawableLeft="@drawable/icon_lock"
                     android:ems="10"
-                    android:hint="Password"
+                    android:hint="  Password"
                     android:inputType="textPassword"
                     android:paddingLeft="5dp" />
 
@@ -63,14 +69,14 @@
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="30dp"
                     android:layout_marginRight="15dp"
-                    android:background="@color/colorPrimary"
+                    android:background="@drawable/redondo"
                     android:text="Iniciar Sesión"
                     android:textColor="#FFF"
                     android:textSize="18sp" />
 
             </LinearLayout>
         </FrameLayout>
-    </ScrollView>
+    </FrameLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

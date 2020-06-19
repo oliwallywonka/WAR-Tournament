@@ -3,11 +3,11 @@
     <item
         android:id="@+id/tournament"
         android:enabled="true"
-        android:icon="@drawable/icon_lock"
-        android:title="Organizar"/>
+        android:icon="@drawable/home"
+        android:title="Organizar" />
     <item
         android:id="@+id/logout"
         android:enabled="true"
-        android:icon="@drawable/icon_lock"
-        android:title="Logout"/>
+        android:icon="@drawable/lag"
+        android:title="Logout" />
 </menu>
